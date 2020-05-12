@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
+using System.Threading;
 
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -18,6 +18,7 @@ namespace Eye_Killer
     {
         Image<Bgr, byte> imgInput;
         bool run = false;
+        VideoCapture cam = new VideoCapture();
         public Form1()
         {
             InitializeComponent();
@@ -26,25 +27,19 @@ namespace Eye_Killer
         private void Form1_Load(object sender, EventArgs e)
         {
             string fileName = @"D:\The Gibbon\Documents\Pictures\Funny Pictures\mine";
-
-
-        }
+        
+        }      
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             run = !run;
         }
 
-        private void mainLoop()
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            while (true)
+            if(run == true)
             {
-                if(run == true)
-                {
-                    VideoCapture cam = new VideoCapture();
-                    pictureBox1.Image = cam.QueryFrame().ToBitmap();
-                }
-                
+                pictureBox1.Image = cam.QueryFrame().ToBitmap();
             }
         }
     }
