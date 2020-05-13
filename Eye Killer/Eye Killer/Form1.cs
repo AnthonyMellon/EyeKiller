@@ -57,10 +57,14 @@ namespace Eye_Killer
                 //set the picture box image
                 pictureBox1.Image = imgInput.AsBitmap();
 
+                //Scale face position to 0 - 180
+                float scaledX = (180 / imgInput.Width) * faceCenterX;
+                float scaledY = (180 / imgInput.Height) * faceCenterY;
+
                 //Send face position to arduino
-                if(serialPortArduino.IsOpen == true)
+                if (serialPortArduino.IsOpen == true)
                 {
-                    serialPortArduino.WriteLine("X" + faceCenterX + "Y" + faceCenterY);
+                    serialPortArduino.WriteLine("X" + scaledX + "Y" + scaledY);
                 }
             }
 
