@@ -56,8 +56,35 @@ namespace Eye_Killer
 
                 //set the picture box image
                 pictureBox1.Image = imgInput.AsBitmap();
+
+                //Send face position to arduino
+                if(serialPortArduino.IsOpen == true)
+                {
+                    serialPortArduino.WriteLine("X" + faceCenterX + "Y" + faceCenterY);
+                }
             }
 
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                serialPortArduino.PortName = textBoxPortName.Text;
+                serialPortArduino.Open();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error\n\n" + ex.Message + "\n\nSerial port closed");
+                serialPortArduino.Close();
+            }
+            
+        }
+
+        private void buttonEnd_Click(object sender, EventArgs e)
+        {
+            serialPortArduino.Close();
         }
     }
 }
