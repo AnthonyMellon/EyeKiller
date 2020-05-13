@@ -1,8 +1,11 @@
- #include <Servo.h>
+#include <LiquidCrystal.h>
+#include <Servo.h>
 
 
 Servo srvoX;
 Servo srvoY;
+
+LiquidCrystal LCD_cords(13, 12, 11, 10, 9, 8);
 
 int posX = 0;
 int posY = 0;
@@ -13,8 +16,12 @@ void setup() {
   // put your setup code here, to run once:
   srvoX.attach(6);
   srvoY.attach(7);
+
+  LCD_cords.begin(16, 2);
+  LCD_cords.clear();
   
   Serial.begin(9600);
+  Serial.setTimeout(10);
 }
 
 void loop() {
@@ -25,8 +32,16 @@ void serialEvent() {
 
   serialIn = Serial.readString();
 
-  srvoX.write(parseXPos(serialIn));
-  srvoY.write(parseYPos(serialIn));
+  int xPos = parseXPos(serialIn)
+  int yPos = parseYPos(serialIn)
+
+  LCD_cords.setCursor(0,0);
+  LCD_cords.print("X: " + xPos);
+  LCD_cords.setCursor(1, 1);
+  LCD_cords.print("Y: " + yPos);
+  
+  srvoX.write(xPos);
+  srvoY.write(yPos);
 
 
 }
