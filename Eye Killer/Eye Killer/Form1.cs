@@ -25,42 +25,24 @@ namespace Eye_Killer
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            imgInput = cam.QueryFrame().ToImage<Bgr, byte>();
-            //pictureBox1.Image = imgInput.ToBitmap();
+            imgInput = cam.QueryFrame().ToImage<Bgr, byte>();            
 
-            try
-            {
-                if(imgInput==null)
-                {
-                    throw new Exception("No image");
-                }
-
-                DetectFaceHaar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            DetectFaceHaar();
         }
 
         public void DetectFaceHaar()
         {
-            try
+            string facePath = Path.GetFullPath(@"../../data/haarcascade_frontalface_default.xml");
+            CascadeClassifier classifierFace = new CascadeClassifier(facePath);
+            var imgGray = imgInput.Convert<Gray, byte>().Clone();
+            Rectangle [] faces = classifierFace.DetectMultiScale(imgGray, 1.1, 4);
+
+            foreach(var face in faces)
             {
-                string facePath = Path.GetFullPath(@"../../data/haarcascade_frontalface_default.xml");
-                CascadeClassifier classifierFace = new CascadeClassifier(facePath);
-                var imgGray = imgInput.Convert<Gray, byte>().Clone();
-                Rectangle [] faces = classifierFace.DetectMultiScale(imgGray, 1.1, 4);
-                foreach(var face in faces)
-                {
-                    imgInput.Draw(face, new Bgr(0, 0, 255), 2);
-                }
-                pictureBox1.Image = imgInput.AsBitmap();
+                imgInput.Draw(face, new Bgr(0, 0, 255), 2);
+                imgInput.Draw(new CircleF(new PointF(face.X + (face.Width / 2), face.Y + (face.Height / 2)), 1), new Bgr(0, 255, 0), 2);
             }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            pictureBox1.Image = imgInput.AsBitmap();
         }
     }
 }
