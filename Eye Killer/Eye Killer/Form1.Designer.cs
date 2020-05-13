@@ -44,15 +44,17 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(18, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 500);
+            this.pictureBox1.Size = new System.Drawing.Size(750, 769);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -60,10 +62,11 @@
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(519, 12);
+            this.textBox1.Location = new System.Drawing.Point(778, 18);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(131, 26);
+            this.textBox1.Size = new System.Drawing.Size(196, 39);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Face Position";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -71,24 +74,27 @@
             // textBoxFaceX
             // 
             this.textBoxFaceX.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxFaceX.Location = new System.Drawing.Point(519, 51);
+            this.textBoxFaceX.Location = new System.Drawing.Point(778, 78);
+            this.textBoxFaceX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxFaceX.Name = "textBoxFaceX";
-            this.textBoxFaceX.Size = new System.Drawing.Size(131, 13);
+            this.textBoxFaceX.Size = new System.Drawing.Size(196, 19);
             this.textBoxFaceX.TabIndex = 0;
             // 
             // textBoxFaceY
             // 
             this.textBoxFaceY.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxFaceY.Location = new System.Drawing.Point(519, 77);
+            this.textBoxFaceY.Location = new System.Drawing.Point(778, 118);
+            this.textBoxFaceY.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxFaceY.Name = "textBoxFaceY";
-            this.textBoxFaceY.Size = new System.Drawing.Size(131, 13);
+            this.textBoxFaceY.Size = new System.Drawing.Size(196, 19);
             this.textBoxFaceY.TabIndex = 0;
             // 
             // textBoxPortName
             // 
-            this.textBoxPortName.Location = new System.Drawing.Point(518, 155);
+            this.textBoxPortName.Location = new System.Drawing.Point(777, 238);
+            this.textBoxPortName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxPortName.Name = "textBoxPortName";
-            this.textBoxPortName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPortName.Size = new System.Drawing.Size(148, 26);
             this.textBoxPortName.TabIndex = 2;
             // 
             // label1
@@ -96,18 +102,20 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(518, 126);
+            this.label1.Location = new System.Drawing.Point(777, 194);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 26);
+            this.label1.Size = new System.Drawing.Size(153, 39);
             this.label1.TabIndex = 3;
             this.label1.Text = "Enter Port";
             // 
             // buttonStart
             // 
             this.buttonStart.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold);
-            this.buttonStart.Location = new System.Drawing.Point(518, 195);
+            this.buttonStart.Location = new System.Drawing.Point(777, 300);
+            this.buttonStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(81, 37);
+            this.buttonStart.Size = new System.Drawing.Size(122, 57);
             this.buttonStart.TabIndex = 4;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -116,9 +124,10 @@
             // buttonEnd
             // 
             this.buttonEnd.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold);
-            this.buttonEnd.Location = new System.Drawing.Point(518, 238);
+            this.buttonEnd.Location = new System.Drawing.Point(777, 366);
+            this.buttonEnd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonEnd.Name = "buttonEnd";
-            this.buttonEnd.Size = new System.Drawing.Size(81, 37);
+            this.buttonEnd.Size = new System.Drawing.Size(122, 57);
             this.buttonEnd.TabIndex = 5;
             this.buttonEnd.Text = "End";
             this.buttonEnd.UseVisualStyleBackColor = true;
@@ -126,10 +135,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.ClientSize = new System.Drawing.Size(679, 530);
+            this.ClientSize = new System.Drawing.Size(1018, 815);
             this.Controls.Add(this.buttonEnd);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.label1);
@@ -138,6 +147,7 @@
             this.Controls.Add(this.textBoxFaceX);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
