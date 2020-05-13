@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -17,29 +18,48 @@ namespace Eye_Killer
     public partial class Form1 : Form
     {
         Image<Bgr, byte> imgInput;
-        bool run = false;
         VideoCapture cam = new VideoCapture();
         public Form1()
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            string fileName = @"D:\The Gibbon\Documents\Pictures\Funny Pictures\mine";
-        
-        }      
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            run = !run;
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(run == true)
+            imgInput = cam.QueryFrame().ToImage<Bgr, byte>();
+            //pictureBox1.Image = imgInput.ToBitmap();
+
+            try
             {
-                pictureBox1.Image = cam.QueryFrame().ToBitmap();
+                if(imgInput==null)
+                {
+                    throw new Exception("No image");
+                }
+
+                DetectFaceHaar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void DetectFaceHaar()
+        {
+            try
+            {
+                string facePath = Path.GetFullPath(@"../../data/haarcascade_frontalface_default.xml");
+                CascadeClassifier classifierFace = new CascadeClassifier(facePath);
+                var imgGray = imgInput.Convert<Gray, byte>().Clone();
+                Rectangle [] faces = classifierFace.DetectMultiScale(imgGray, 1.1, 4);
+                foreach(var face in faces)
+                {
+                    imgInput.Draw(face, new Bgr(0, 0, 255), 2);
+                }
+                pictureBox1.Image = imgInput.AsBitmap();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
