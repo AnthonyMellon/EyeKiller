@@ -19,7 +19,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly: 
-   
 }
 
 void serialEvent() {
@@ -28,11 +27,13 @@ void serialEvent() {
 
   srvoX.write(parseXPos(serialIn));
   srvoY.write(parseYPos(serialIn));
+
+
 }
 
 int parseXPos(String data)
 {
-  data.remove(data.indexOf("y"));
+  data.remove(data.indexOf("Y"));
   data.remove(data.indexOf("X"), 1);
 
   return data.toInt();
