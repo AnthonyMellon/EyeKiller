@@ -39,9 +39,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(18, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 500);
+            this.pictureBox1.Size = new System.Drawing.Size(750, 769);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -49,46 +50,51 @@
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(519, 12);
+            this.textBox1.Location = new System.Drawing.Point(778, 18);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(131, 26);
-            this.textBox1.TabIndex = 2;
+            this.textBox1.Size = new System.Drawing.Size(196, 39);
+            this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Face Position";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxFaceX
             // 
             this.textBoxFaceX.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxFaceX.Location = new System.Drawing.Point(519, 51);
+            this.textBoxFaceX.Location = new System.Drawing.Point(778, 78);
+            this.textBoxFaceX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxFaceX.Name = "textBoxFaceX";
-            this.textBoxFaceX.Size = new System.Drawing.Size(131, 13);
-            this.textBoxFaceX.TabIndex = 3;
+            this.textBoxFaceX.Size = new System.Drawing.Size(196, 19);
+            this.textBoxFaceX.TabIndex = 0;
             // 
             // textBoxFaceY
             // 
             this.textBoxFaceY.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxFaceY.Location = new System.Drawing.Point(519, 77);
+            this.textBoxFaceY.Location = new System.Drawing.Point(778, 118);
+            this.textBoxFaceY.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxFaceY.Name = "textBoxFaceY";
-            this.textBoxFaceY.Size = new System.Drawing.Size(131, 13);
-            this.textBoxFaceY.TabIndex = 4;
+            this.textBoxFaceY.Size = new System.Drawing.Size(196, 19);
+            this.textBoxFaceY.TabIndex = 0;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.ClientSize = new System.Drawing.Size(679, 530);
+            this.ClientSize = new System.Drawing.Size(1018, 815);
             this.Controls.Add(this.textBoxFaceY);
             this.Controls.Add(this.textBoxFaceX);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
