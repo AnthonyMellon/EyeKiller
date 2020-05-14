@@ -61,14 +61,17 @@ namespace Eye_Killer
                 imgInput.Draw(face, new Bgr(0, 0, 255), 2);
                 imgInput.Draw(new CircleF(new PointF(faceCenterX, faceCenterY), 1), new Bgr(0, 255, 0), 2);                
 
-                //Scale face position to 0 - 180
-                int scaledX = Convert.ToInt16(faceCenterX / (imgInput.Width / 180));
-                int scaledY = Convert.ToInt16(faceCenterY / (imgInput.Height / 180));
+                ////Scale face position to 0 - 180
+                //int scaledX = Convert.ToInt16(faceCenterX / (imgInput.Width / 180));
+                //int scaledY = Convert.ToInt16(faceCenterY / (imgInput.Height / 180));
+
+                //Do some math to figure out the angle the servos need to be at
+
 
                 //Send face position to arduino
                 if (serialPortArduino.IsOpen == true && watch.ElapsedMilliseconds > 15)
                 {
-                    string coordinates = "X" + scaledX + "Y" + scaledY;
+                    string coordinates = "X" + calculateAngle(faceCenterX, (imgInput.Width/2)) + "Y" + calculateAngle(faceCenterY, (imgInput.Height / 2));
                     label2.Text = coordinates;
                     serialPortArduino.Write(coordinates);
                     watch = Stopwatch.StartNew();
@@ -105,6 +108,27 @@ namespace Eye_Killer
         private void Form1_Load(object sender, EventArgs e)
         {
             watch = Stopwatch.StartNew();
+        }
+
+        private int calculateAngle(float faceCenter, int halfPoint) //Calculate the angle the servos should be at
+        {
+            int angle = 0;
+            int distance = calculateDistance();
+
+            if (faceCenter > halfPoint)
+            {
+                angle = 180 - (int)Math.Atan(distance / (faceCenter - halfPoint));
+            }
+            else
+            {
+                angle = (int)(Math.Atan(distance / faceCenter));
+            }
+            return angle;
+        }
+
+        private int calculateDistance() //Finish this at some point
+        {
+            return 250;
         }
     }
 }
