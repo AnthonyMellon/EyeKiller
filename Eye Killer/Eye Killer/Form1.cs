@@ -59,10 +59,7 @@ namespace Eye_Killer
 
                 //Draw rectangle and circle over first face
                 imgInput.Draw(face, new Bgr(0, 0, 255), 2);
-                imgInput.Draw(new CircleF(new PointF(faceCenterX, faceCenterY), 1), new Bgr(0, 255, 0), 2);
-
-                //set the picture box image
-                pictureBox1.Image = imgInput.AsBitmap();
+                imgInput.Draw(new CircleF(new PointF(faceCenterX, faceCenterY), 1), new Bgr(0, 255, 0), 2);                
 
                 //Scale face position to 0 - 180
                 int scaledX = Convert.ToInt16(faceCenterX / (imgInput.Width / 180));
@@ -78,6 +75,9 @@ namespace Eye_Killer
                 }
             }
             catch (Exception) { };
+
+            //set the picture box image
+            pictureBox1.Image = imgInput.AsBitmap();
 
         }
 
