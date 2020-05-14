@@ -112,21 +112,21 @@ namespace Eye_Killer
 
         private int calculateAngle(float faceCenter, int halfPoint) //Calculate the angle the servos should be at
         {
-            double angle = 0;
+            double degrees = 0;
             double radians = 0;
             int distance = calculateDistance();
 
             if (faceCenter > halfPoint)
-            {
-                radians = (Math.PI / 180) * (distance / (faceCenter - halfPoint));
-                angle = 180 - Math.Atan(radians);
+            {                
+                radians = Math.Atan(distance / (faceCenter - halfPoint));
+                degrees = 180 - (radians * (180 / Math.PI));
             }
             else
             {
-                radians = (Math.PI / 180) *  (distance / faceCenter);
-                angle = Math.Atan(radians);
+                radians = Math.Atan(distance / faceCenter);
+                degrees = radians * (180 / Math.PI);
             }
-            return (int)(angle*(180/Math.PI));
+            return (int)degrees;
         }
 
         private int calculateDistance() //Finish this at some point
