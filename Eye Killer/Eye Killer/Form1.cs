@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.IO;
+using System.Diagnostics;
 
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -19,9 +20,15 @@ namespace Eye_Killer
     {
         Image<Bgr, byte> imgInput;
         VideoCapture cam = new VideoCapture();
+        Rectangle face;
+
+        public Stopwatch watch;
+
         public Form1()
         {
             InitializeComponent();
+
+            face = new Rectangle();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -38,35 +45,39 @@ namespace Eye_Killer
 
             //find faces in the current image
             var imgGray = imgInput.Convert<Gray, byte>().Clone();
-            Rectangle [] faces = classifierFace.DetectMultiScale(imgGray, 1.1, 4);
-
-            if(faces.Length > 0)
+            
+            try
             {
+                face = classifierFace.DetectMultiScale(imgGray, 1.1, 4)[0];
                 //Get center point of face
-                float faceCenterX = faces[0].X + faces[0].Width / 2;
-                float faceCenterY = faces[0].Y + faces[0].Height / 2;
+                float faceCenterX = face.X + face.Width / 2;
+                float faceCenterY = face.Y + face.Height / 2;
 
                 //Display faces x and y position
                 textBoxFaceX.Text = "X: " + faceCenterX;
                 textBoxFaceY.Text = "Y: " + faceCenterY;
 
                 //Draw rectangle and circle over first face
-                imgInput.Draw(faces[0], new Bgr(0, 0, 255), 2);
+                imgInput.Draw(face, new Bgr(0, 0, 255), 2);
                 imgInput.Draw(new CircleF(new PointF(faceCenterX, faceCenterY), 1), new Bgr(0, 255, 0), 2);
 
                 //set the picture box image
                 pictureBox1.Image = imgInput.AsBitmap();
 
                 //Scale face position to 0 - 180
-                float scaledX = (180 / imgInput.Width) * faceCenterX;
-                float scaledY = (180 / imgInput.Height) * faceCenterY;
+                int scaledX = Convert.ToInt16(faceCenterX / (imgInput.Width / 180));
+                int scaledY = Convert.ToInt16(faceCenterY / (imgInput.Height / 180));
 
                 //Send face position to arduino
-                if (serialPortArduino.IsOpen == true)
+                if (serialPortArduino.IsOpen == true && watch.ElapsedMilliseconds > 15)
                 {
-                    serialPortArduino.WriteLine("X" + scaledX + "Y" + scaledY);
+                    string coordinates = "X" + scaledX + "Y" + scaledY;
+                    label2.Text = coordinates;
+                    serialPortArduino.Write(coordinates);
+                    watch = Stopwatch.StartNew();
                 }
             }
+            catch (Exception) { };
 
         }
 
@@ -89,6 +100,11 @@ namespace Eye_Killer
         private void buttonEnd_Click(object sender, EventArgs e)
         {
             serialPortArduino.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            watch = Stopwatch.StartNew();
         }
     }
 }
