@@ -117,11 +117,11 @@ namespace Eye_Killer
 
             if (faceCenter > halfPoint)
             {
-                angle = (int)(Math.Atan(distance / faceCenter));
+                angle = 180 - (int)Math.Atan(distance / (faceCenter - halfPoint));
             }
             else
             {
-                angle = 180 - (int)Math.Atan(distance / (faceCenter - halfPoint));                
+                angle = (int)(Math.Atan(distance / faceCenter));
             }
             return angle;
         }
