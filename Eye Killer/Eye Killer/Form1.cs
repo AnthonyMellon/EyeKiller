@@ -124,7 +124,7 @@ namespace Eye_Killer
             else
             {
                 radians = Math.Atan(distance / faceCenter);
-                degrees = radians * (180 / Math.PI);
+                degrees = 135 - (radians * (180 / Math.PI));
             }
             return (int)degrees;
         }
